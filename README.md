@@ -1,7 +1,7 @@
 avrgcc-cpputest-boilerplate
 ===========================
 
-Test project for AVRGCC-based code on windows and cpputest.
+Test project for AVRGCC-based code on windows and cpputest. KISS principle, no IDEs except your neighbourhood text editor.
 
 Steps
 -----
