@@ -14,5 +14,5 @@ Steps
   - your directory structure
   - the location of your AVR libc include headers
 5. Edit maketest.mk to add the location of cpputest
-6. Add the avrgcc bin directory to your path.
+6. Add the avrgcc bin directory to your path, if apt didn't do this for you (or windowz).
 7. Make test, make program, make all, make fuse.
