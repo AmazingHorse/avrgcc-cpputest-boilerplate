@@ -13,6 +13,10 @@ SRC_DIR := ./src
 INCLUDE_DIR := ./include
 OBJ_DIR := ./obj
 
+# Add the location of the AVRGCC headers here
+
+AVR_GCC_INCLUDE :=
+
 # Programming support using avrdude. Settings and variables.
 
 AVRDUDE_PROGRAMMER = arduino
@@ -22,6 +26,17 @@ BAUD_RATE = 19200
 #
 # END EDITME
 #
+
+# Check the OS and supply a default include path, if the user has not defined one
+
+ifeq ($(AVR_GCC_INCLUDE),)
+ifeq ($(OS),Windows_NT)
+AVR_GCC_INCLUDE := "C:/tools/WinAVR-20100110/avr/include"	
+else
+AVR_GCC_INCLUDE := "/usr/lib/avr/include"
+endif
+endif
+
 
 # Avrdude accepts intel hex files as input for programming
 
@@ -59,7 +74,7 @@ CSTANDARD = -std=gnu99
 CDEFS = -D__ATMEGA328P__
 
 # Place -I options here
-CINCS = -I"/cygdrive/c/tools/WinAVR-20100110/avr/include" -I$(INCLUDE_DIR)
+CINCS = -I$(AVR_GCC_INCLUDE) -I$(INCLUDE_DIR)
 
 CDEBUG = -g$(DEBUG)
 CWARN = -Wall -Wstrict-prototypes
