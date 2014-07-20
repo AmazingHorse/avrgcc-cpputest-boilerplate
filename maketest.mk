@@ -19,12 +19,15 @@ Else
 endif
 Endif
 
+# Make does not offer a recursive wildcard function, so here is one
+rwildcard=$(wildcard $(addsuffix $2, $1)) $(foreach d,$(wildcard $(addsuffix *, $1)),$(call rwildcard,$d/,$2))
 # --- SRC_FILES ---
 # Use SRC_FILES to specifiy individual production
 # code files.
 # These files are compiled and put into the
 # ProductionCode library and links with the test runner
-SRC_FILES =
+# Search the source directory for all c files
+SRC_FILES := $(call rwildcard,$(SRC_DIR)/,*.c)
 
 # --- SRC_DIRS ---
 # Use SRC_DIRS to specifiy production directories
